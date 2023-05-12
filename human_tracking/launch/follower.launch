@@ -1,0 +1,69 @@
+<launch>
+
+<arg name="savedata" default="false"/>
+<arg name="bag_prefix" default="20230121_Vicon_test"/>
+<arg name="offboard_output"     default="true"/>
+<arg name="joystick_output"     default="false"/>
+
+
+<arg name="veh_name" default="VOXL1"/>
+
+
+	<!-- vim: set ft=xml noet : -->
+	<!-- example launch script for PX4 based FCU's -->
+
+	<arg name="fcu_url" default="udp://localhost:14551@:14551" />
+	<arg name="gcs_url" default="" />
+	<arg name="tgt_system" default="1" />
+	<arg name="tgt_component" default="1" />
+	<arg name="log_output" default="screen" />
+	<arg name="fcu_protocol" default="v2.0" />
+	<arg name="respawn_mavros" default="false" />
+
+	<include file="$(find mavros)/launch/node.launch">
+		<arg name="pluginlists_yaml" value="$(find human_tracking)/param/px4_pluginlists.yaml" />
+		<arg name="config_yaml" value="$(find human_tracking)/param/px4_config.yaml" />
+
+		<arg name="fcu_url" value="$(arg fcu_url)" />
+		<arg name="gcs_url" value="$(arg gcs_url)" />
+		<arg name="tgt_system" value="$(arg tgt_system)" />
+		<arg name="tgt_component" value="$(arg tgt_component)" />
+		<arg name="log_output" value="$(arg log_output)" />
+		<arg name="fcu_protocol" value="$(arg fcu_protocol)" />
+		<arg name="respawn_mavros" default="$(arg respawn_mavros)" />
+	</include>
+
+        <!-- Offboard Package -->
+
+        <node pkg="human_tracking" type="human_tracking_node" name="human_tracking" output="screen">
+        </node>
+
+  <node if="$(arg joystick_output)" name="joy_node" pkg="joy" type="joy_node">
+    <!-- Specify the joystick device -->
+    <param name="dev" value="/dev/input/js0" />
+    <!-- Specify the deadzone value for analog joystick axes -->
+    <param name="deadzone" value="0.01" />
+    <!-- Specify the scaling factor for analog joystick axes -->
+    <param name="scale" value="1.0" />
+    <!-- Specify whether to publish only when the joystick is active -->
+    <param name="autorepeat_rate" value="20" />
+    <!-- Specify whether to invert any of the joystick axes -->
+    <param name="invert_x" value="false" />
+    <param name="invert_y" value="false" />
+    <param name="invert_z" value="false" />
+    <param name="invert_rx" value="false" />
+    <param name="invert_ry" value="false" />
+    <param name="invert_rz" value="false" />
+    <!-- Specify whether to use the joystick's buttons to emulate keyboard keys -->
+    <param name="emulate_keyboard" value="false" />
+    <!-- Specify whether to use the joystick's buttons to emulate mouse buttons -->
+    <param name="emulate_mouse" value="false" />
+    <!-- Specify whether to use the joystick's buttons to control the screen saver -->
+    <param name="emulate_joystick" value="false" />
+  </node>
+
+
+
+
+
+</launch>
