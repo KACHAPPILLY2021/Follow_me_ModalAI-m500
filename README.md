@@ -44,8 +44,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-This project deals with the implementation of human detection and tracking. The yaw is controlled using bounding box info. 
-Depth info is used for forward and backward motion.
+This project deals with the implementation of human detection and tracking. The quadrotor used is ModalAI m500 model with VOXL Flight autonomy computer and PX4 flight controller.
 
 Summary of tasks achieved:
 * Implemented ROS node for accessing and viewing Yolo v5 output.
