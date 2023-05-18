@@ -91,7 +91,7 @@ https://github.com/KACHAPPILLY2021/Follow_me_ModalAI-m500/assets/90359587/1a651c
 <!-- Document and Reports -->
 ## Report
 
-Detailed decription for this project can be found in this [Report]()
+Detailed decription for this project can be found in this [Report](https://github.com/KACHAPPILLY2021/Follow_me_ModalAI-m500/blob/main/report.pdf)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
